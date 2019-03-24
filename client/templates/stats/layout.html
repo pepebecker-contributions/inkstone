@@ -1,0 +1,35 @@
+<template name="stats">
+  {{#ionic}}
+    {{#contentFor "headerButtonLeft"}}
+      {{> ionNavBackButton text="Done"}}
+    {{/contentFor}}
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Stats</h1>
+    {{/contentFor}}
+    {{#if noData}}
+      <div class="error">
+        You have no lists enabled!
+        <a class="option" href="/lists">Enable a word list.</a>
+      </div>
+    {{else}}
+      <h3>Total: {{data.total}}</h3>
+      <canvas id="stats-chart"></canvas>
+      <table id="stats-table">
+        <tbody>
+          <tr>
+            <th>Correct</th>
+            <td>{{data.successes}}</td>
+          </tr>
+          <tr>
+            <th>Wrong</th>
+            <td>{{data.failures}}</td>
+          </tr>
+          <tr>
+            <th>Unseen</th>
+            <td>{{data.unseen}}</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/if}}
+  {{/ionic}}
+</template>

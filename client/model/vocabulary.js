@@ -82,7 +82,7 @@ const materialize = (entry) => {
 class Cursor {
   constructor(filter) {
     vocabulary.depend();
-    this._list = cache.active.filter(filter);
+    this._list = filter ? cache.active.filter(filter) : cache.active;
   }
   count() {
     return this._list.length;
@@ -112,6 +112,12 @@ class Cursor {
 }
 
 class Vocabulary {
+  static indices() {
+    return kIndices;
+  }
+  static count(filter) {
+    return new Cursor(filter).count()
+  }
   static addItem(word, list) {
     check(word, String);
     if (!cache.index[word]) {
